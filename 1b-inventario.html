@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inventario de productos · Toolkit Gestión de portafolio</title>
+<meta name="description" content="Toolkit interactivo de gestión de portafolio de productos: Inventario de productos.">
+<link rel="icon" href="assets/logo.png"><link rel="stylesheet" href="assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+</head><body data-page="1b-inventario">
+<div class="toolbar"><div class="brand"><img src="assets/logo.png" alt="Kiowa"><a href="index.html" style="color:#fff;text-decoration:none">Toolkit · Gestión de portafolio</a></div>
+<span class="saved">Se guarda solo en este navegador</span>
+<button data-act="print">Imprimir / PDF</button><button data-act="export">Guardar archivo</button><button data-act="import">Abrir archivo</button><button data-act="clear">Limpiar hoja</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+<main class="sheet">
+<div class="crumbs"><a href="1a-despliegue.html">1a&nbsp; Despliegue</a><span class="sep"> › </span><span class="on">1b&nbsp; Productos</span><span class="sep"> › </span><a href="2-mapa.html">2&nbsp; Mapa</a><span class="sep"> › </span><a href="3-priorizacion.html">3&nbsp; Priorización</a><span class="sep"> › </span><span class="off">4&nbsp; Gobierno</span></div>
+<div class="head"><div><h1>Inventario de productos</h1><p class="q">¿Qué problema resuelve cada producto, para quién, cómo lo medimos y en qué etapa está?</p></div><div><div class="meta"><label>Solución:<input name="m_solucion" autocomplete="off"></label><label>Programa:<input name="m_programa" autocomplete="off"></label><label>Fecha:<input name="m_fecha" autocomplete="off"></label><label>Versión:<input name="m_version" autocomplete="off"></label></div><div class="flow"><b>Recibe</b> de Despliegue: los productos de cada programa<br><b>Entrega</b> a Mapa por zonas y horizontes: productos con problema, usuario, indicador y ciclo de vida</div></div></div>
+<style>
+.inv{border:3px solid var(--navy);padding:.8rem 1rem}
+.top2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:.8rem}
+.top2 .h{margin-bottom:.1rem}
+table.t{width:100%;border-collapse:collapse;table-layout:fixed}
+table.t th{background:var(--navy);color:#fff;text-align:left;font-size:.8rem;padding:.4rem .5rem;border:1px solid var(--navy)}
+table.t td{border:1px solid var(--line);padding:.25rem .35rem;vertical-align:top}
+table.t td .hint{display:block;font-size:.7rem;color:#9AA6B3;margin-bottom:.1rem}
+.ciclo{display:flex;gap:.45rem;flex-wrap:wrap;font-size:.72rem;color:var(--grey)}
+.ciclo label{display:flex;flex-direction:column;align-items:center;gap:.1rem;cursor:pointer}
+.cnt{display:grid;grid-template-columns:260px repeat(5,1fr);gap:.6rem;margin-top:.9rem;align-items:center}
+.cnt .box{border:1px solid var(--line);padding:.5rem;text-align:center}
+.cnt .box b{display:block;font-size:1.7rem;color:var(--blue)}
+td.n{font-size:1.1rem;font-weight:900;color:var(--blue);text-align:center;width:36px}
+</style><div class="inv">
+<div class="top2"><div><div class="h">Programa</div><div class="sub">Nombre, tal como está en Despliegue.</div><input class="f" name="programa" placeholder="Nombre del programa" autocomplete="off" ></div>
+<div><div class="h">Indicador clave del programa</div><div class="sub">Indicador · base → meta, copiados de Despliegue.</div><input class="f" name="prog_ind" placeholder="Indicador del programa" autocomplete="off" ><div class="bm"><span>Base</span><input class="f num" name="prog_base" placeholder="" autocomplete="off" ><span>Meta</span><input class="f num" name="prog_meta" placeholder="" autocomplete="off" ><input type="hidden" name="prog_dir"><button type="button" class="dir" title="Marque ↑ si la meta sube o ↓ si baja">↑↓</button></div></div></div>
+<div data-repeat="prod" data-min="5"><table class="t"><thead><tr><th style="width:36px">N°</th><th>Producto</th><th>Problema que resuelve</th><th>A quién sirve</th><th>Cómo lo resuelve</th><th style="width:21%">Indicador clave</th><th style="width:190px">Ciclo de vida</th></tr></thead>
+<tbody data-rows></tbody></table><template><tr><td class="n">__i__</td>
+<td><input class="f" name="prod___i___name" placeholder="El mismo nombre de su ficha en Despliegue" autocomplete="off" ></td><td><textarea class="f" name="prod___i___problema" placeholder="El problema del usuario que se repite" rows="3"></textarea></td><td><textarea class="f" name="prod___i___usuario" placeholder="Usuarios, clientes, equipos u organizaciones" rows="3"></textarea></td><td><textarea class="f" name="prod___i___solucion" placeholder="Lo que recibe el usuario, en una frase; sin tecnología" rows="3"></textarea></td><td><textarea class="f" name="prod___i___ind" placeholder="Copiado de su ficha en Despliegue" rows="2"></textarea><div class="bm"><span>Base</span><input class="f num" name="prod___i___base" placeholder="" autocomplete="off" ><span>Meta</span><input class="f num" name="prod___i___meta" placeholder="" autocomplete="off" ><input type="hidden" name="prod___i___dir"><button type="button" class="dir" title="Marque ↑ si la meta sube o ↓ si baja">↑↓</button></div></td>
+<td><div class="ciclo"><label><input type="radio" name="prod___i___ciclo" value="Descubrir">Descubrir</label><label><input type="radio" name="prod___i___ciclo" value="Construir">Construir</label><label><input type="radio" name="prod___i___ciclo" value="Escalar">Escalar</label><label><input type="radio" name="prod___i___ciclo" value="Operar">Operar</label><label><input type="radio" name="prod___i___ciclo" value="Retirar">Retirar</label></div></td></tr></template><button type="button" class="addrow" data-add>+ Agregar producto</button></div>
+<div class="cnt"><div><div class="h">Productos por ciclo de vida</div><div class="sub">Cuántos productos hay en cada etapa. Orienta el horizonte de cada producto en el Mapa.</div></div><div class="box">Descubrir<b data-cnt="Descubrir">0</b></div><div class="box">Construir<b data-cnt="Construir">0</b></div><div class="box">Escalar<b data-cnt="Escalar">0</b></div><div class="box">Operar<b data-cnt="Operar">0</b></div><div class="box">Retirar<b data-cnt="Retirar">0</b></div></div></div>
+<div class="foot"><div><b>Kiowa · Gestión de portafolio de productos</b><br>Estrategia, priorización y gobierno del portafolio</div>
+<div class="use"><b>Cómo usarlo ·</b> una hoja por programa y una fila por producto. Nombre e indicador se copian de Despliegue: si cambian, se cambian allá. Un producto tiene usuarios propios; si no, es una funcionalidad de otro producto.<small>© Kiowa · v7.0 · Producto y funcionalidad: M. Cagan · M. Perri · T. Torres (oportunidad antes que solución)</small></div><img src="assets/logo.png" alt="Kiowa"></div>
+</main>
+<script>window.recalc=function(){var c={};document.querySelectorAll('input[type=radio][name$="_ciclo"]:checked').forEach(function(r){c[r.value]=(c[r.value]||0)+1});
+document.querySelectorAll('[data-cnt]').forEach(function(e){e.textContent=c[e.getAttribute('data-cnt')]||0});};</script>
+<script src="assets/app.js"></script>
+</body></html>

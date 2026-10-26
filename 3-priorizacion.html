@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Priorización y «sí condicionado» · Toolkit Gestión de portafolio</title>
+<meta name="description" content="Toolkit interactivo de gestión de portafolio de productos: Priorización y «sí condicionado».">
+<link rel="icon" href="assets/logo.png"><link rel="stylesheet" href="assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+</head><body data-page="3-priorizacion">
+<div class="toolbar"><div class="brand"><img src="assets/logo.png" alt="Kiowa"><a href="index.html" style="color:#fff;text-decoration:none">Toolkit · Gestión de portafolio</a></div>
+<span class="saved">Se guarda solo en este navegador</span>
+<button data-act="print">Imprimir / PDF</button><button data-act="export">Guardar archivo</button><button data-act="import">Abrir archivo</button><button data-act="clear">Limpiar hoja</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+<main class="sheet">
+<div class="crumbs"><a href="1a-despliegue.html">1a&nbsp; Despliegue</a><span class="sep"> › </span><a href="1b-inventario.html">1b&nbsp; Productos</a><span class="sep"> › </span><a href="2-mapa.html">2&nbsp; Mapa</a><span class="sep"> › </span><span class="on">3&nbsp; Priorización</span><span class="sep"> › </span><span class="off">4&nbsp; Gobierno</span></div>
+<div class="head"><div><h1>Priorización y «sí condicionado»</h1><p class="q">¿Qué hacemos primero para mover el indicador de éxito?</p></div><div><div class="meta"><label>Portafolio:<input name="m_portafolio" autocomplete="off"></label><label>Solución:<input name="m_solucion" autocomplete="off"></label><label>Fecha:<input name="m_fecha" autocomplete="off"></label><label>Versión:<input name="m_version" autocomplete="off"></label></div><div class="flow"><b>Recibe</b> de Mapa por zonas y horizontes: zona, horizonte y meta de capacidad por zona<br><b>Entrega</b> a Modelo de gobierno: iniciativas priorizadas, capacidad por zona y regla de entrada</div></div></div>
+<style>
+.pz{display:grid;grid-template-columns:1fr 470px;border:3px solid var(--navy)}
+.pz>div{border-right:1px solid var(--navy);border-bottom:1px solid var(--navy);padding:.8rem .9rem}
+.pz h3{margin:0;color:var(--navy);font-size:1.15rem}.pz h3 b{color:var(--blue);margin-right:.3rem}
+table.t{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:.5rem}
+table.t th{background:var(--navy);color:#fff;text-align:left;font-size:.78rem;padding:.35rem .45rem;border:1px solid var(--navy)}
+table.t td{border:1px solid var(--line);padding:.2rem .3rem;vertical-align:middle}
+td.n{font-weight:900;color:var(--blue);text-align:center;width:34px}
+.wsjf{background:var(--navy);color:#fff;text-align:center;padding:.5rem;font-size:.85rem;margin-top:.5rem}
+.wsjf span{color:#7FD6CB}
+.zr{display:flex;gap:.25rem;justify-content:center}
+.zr label{display:flex;flex-direction:column;align-items:center;font-size:.68rem;color:var(--grey);cursor:pointer}
+.sel{border:1px solid var(--line);border-radius:4px;padding:.2rem;background:#fff;width:100%;font-size:.8rem}
+.pt{font-weight:900;text-align:center;color:var(--blue)}
+.q4{border:1px solid var(--line);padding:.5rem .6rem;margin-top:.5rem;position:relative}
+.q4 .no{position:absolute;left:-1px;top:-1px;background:var(--navy);color:#fff;width:1.5rem;height:1.5rem;border-radius:0 0 8px 0;text-align:center;font-weight:700;font-size:.85rem;line-height:1.5rem}
+.q4 .h{margin-left:1.3rem;font-size:.92rem}.q4 .sub{margin-left:1.3rem}
+.dec{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-top:.3rem}
+.dec label{border:1px solid var(--line);padding:.45rem;text-align:center;font-size:.8rem;cursor:pointer;background:#fff}
+.dec label b{display:block;color:var(--navy)}
+.dec input{position:absolute;opacity:0}
+.dec label:has(input:checked){background:var(--navy);color:#fff;border-color:var(--navy)}.dec label:has(input:checked) b{color:#fff}
+.cond{border:1px solid var(--line);padding:.5rem;margin-top:.5rem}
+.cond .row{display:grid;grid-template-columns:1fr 150px;gap:.5rem;align-items:end;margin-top:.3rem}
+.cap4{grid-column:1 / span 2;display:grid;grid-template-columns:260px repeat(4,1fr);gap:.8rem;align-items:start}
+.cb{border:1px solid var(--line);padding:.5rem .6rem}.cb .t{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:.3rem}
+.cb .r{display:grid;grid-template-columns:1fr 70px;gap:.3rem;align-items:center;font-size:.8rem;margin-top:.2rem}
+.libre{font-weight:900;text-align:right}
+.where{font-size:.82rem;color:var(--grey);margin:.2rem 0 0;padding-left:1rem}.where b{color:var(--navy)}
+@media (max-width:1100px){.pz{grid-template-columns:1fr}.cap4{grid-column:1;grid-template-columns:1fr 1fr}}
+</style><div class="pz">
+<div><h3><b>1</b>Criterios de priorización</h3><div class="sub">Criterios claros de impacto en la estrategia y de valor para el usuario. Los pesos de los criterios de valor suman 100 %.</div>
+<div data-repeat="crit" data-min="4"><table class="t"><thead><tr><th>Criterio de valor</th><th style="width:90px">Peso</th><th style="width:34%">Cómo se califica (1 a 5)</th></tr></thead><tbody data-rows></tbody></table><template><tr><td><input class="f" name="crit___i___name" placeholder="p. ej., impacto en el indicador clave del programa" autocomplete="off" ></td><td style="width:90px"><div style="display:flex;align-items:center;gap:.2rem"><input class="f num" type="number" min="0" max="100" name="crit___i___peso" placeholder="0"> %</div></td><td><input class="f" name="crit___i___calif" placeholder="Escala 1 a 5: qué significa un 1 y un 5" autocomplete="off" ></td></tr></template><button type="button" class="addrow" data-add>+ Criterio</button></div>
+<div class="sub" style="margin-top:.4rem"><b>Total de pesos:</b> <span id="pesoTot" class="out">0 %</span> <span id="pesoMsg"></span></div>
+<table class="t" style="margin-top:.4rem"><tbody><tr><td style="width:34%"><b>Tamaño</b> del trabajo que requiere (divisor)</td><td>Escala relativa 1 · 2 · 3 · 5 · 8 (mayor número = más capacidad)</td></tr></tbody></table>
+<div class="wsjf">Puntaje (WSJF simplificado) = costo de demora ÷ tamaño del trabajo &nbsp;·&nbsp; <span>primero lo que más mueve el resultado por unidad de capacidad</span></div></div>
+<div style="grid-row:1 / span 2;border-bottom:1px solid var(--navy)"><h3><b>3</b>«Sí condicionado»</h3><div class="sub">Toda iniciativa nueva entra al portafolio solo si responde a las cuatro preguntas.</div>
+<div class="cond"><div class="row" style="grid-template-columns:1fr 1fr"><div><span class="sub">Iniciativa nueva</span><input class="f" name="si_inic" placeholder="Nombre de la iniciativa" autocomplete="off" ></div><div><span class="sub">Producto</span><input class="f" name="si_prod" placeholder="Producto" autocomplete="off" ></div></div></div>
+<div class="q4"><span class="no">1</span><div class="h">¿Qué indicador mueve y cuánto?</div><div class="sub">Indicador clave del producto que mueve, cuánto y a qué programa aporta. Si no mueve ninguno, se replantea.</div><textarea class="f" name="q1" placeholder="" rows="2"></textarea></div><div class="q4"><span class="no">2</span><div class="h">¿En qué zona y horizonte se ubica?</div><div class="sub">Por defecto, la zona de su producto. Compite solo dentro de la capacidad de esa zona.</div><textarea class="f" name="q2" placeholder="" rows="2"></textarea></div><div class="q4"><span class="no">3</span><div class="h">¿Cuánto vale, con qué evidencia y qué capacidad requiere?</div><div class="sub">Con poca evidencia entra primero a descubrir, con un hito de aprendizaje, no a construcción.</div><textarea class="f" name="q3" placeholder="" rows="2"></textarea></div><div class="q4"><span class="no">4</span><div class="h">¿Qué iniciativa le cede capacidad?</div><div class="sub">Costo de oportunidad: lo que se deja al decir sí. Cede la de menor puntaje, solo si la nueva puntúa más.</div><textarea class="f" name="q4" placeholder="" rows="2"></textarea></div>
+<div class="h" style="margin-top:.7rem;font-size:.8rem;color:var(--blue)">DECISIÓN</div>
+<div class="dec"><label><input type="radio" name="decision" value="si"><b>Sí</b>entra ahora con capacidad libre o liberada</label><label><input type="radio" name="decision" value="condicionado"><b>Sí condicionado</b>entra cuando se cumpla la condición</label><label><input type="radio" name="decision" value="no"><b>Todavía no</b>vuelve a la lista; sale tras dos revisiones sin entrar</label></div>
+<div class="cond"><span class="sub">Condición</span><textarea class="f" name="condicion" placeholder="" rows="2"></textarea><div class="row"><div><span class="sub">Quién la verifica (rol)</span><input class="f" name="verifica" placeholder="Rol" autocomplete="off" ></div><div><span class="sub">Revisión</span><input class="f" type="date" name="revision"></div></div><div class="sub" style="margin-top:.3rem">Si no se cumple en la revisión: pasa a «Todavía no»</div></div>
+<div class="h" style="margin-top:.7rem;font-size:.8rem;color:var(--blue)">SE DECIDE EN</div>
+<ul class="where"><li><b>Producto</b> si cabe en la capacidad de su equipo</li><li><b>Programa</b> si cabe en la capacidad del programa</li><li><b>Solución</b> si cruza programas o cambia la capacidad por zona</li></ul></div>
+<div><h3><b>2</b>Lista priorizada de iniciativas</h3><div class="sub">Cada iniciativa es una apuesta: hacer X para mover el indicador clave Y del producto. Se ordena por puntaje dentro de su zona.</div>
+<div data-repeat="ini" data-min="7" style="overflow-x:auto"><table class="t" style="min-width:640px"><thead><tr><th style="width:28px">N°</th><th style="min-width:130px">Iniciativa</th><th style="width:12%">Producto</th><th style="width:96px">Zona</th><th style="width:52px">Costo</th><th style="width:54px">Tam.</th><th style="width:50px">Punt.</th><th style="width:78px">Cuándo</th></tr></thead><tbody data-rows></tbody></table><template><tr><td class="n">__i__</td><td><input class="f" name="ini___i___name" placeholder="Hacer X para mover el indicador Y" autocomplete="off" ></td><td><input class="f" name="ini___i___prod" placeholder="Producto" autocomplete="off" ></td><td><div class="zr"><label>R<input type="radio" name="ini___i___zona" value="R"></label><label>P<input type="radio" name="ini___i___zona" value="P"></label><label>I<input type="radio" name="ini___i___zona" value="I"></label><label>T<input type="radio" name="ini___i___zona" value="T"></label></div></td><td><input class="f num" name="ini___i___cd" placeholder="1–5" autocomplete="off" type="number" min="1" max="5"></td><td><select class="sel" name="ini___i___tam"><option value="">–</option><option>1</option><option>2</option><option>3</option><option>5</option><option>8</option></select></td><td class="pt" data-pt="__i__">–</td><td><select class="sel" name="ini___i___cuando"><option value="">–</option><option>Ahora</option><option>Siguiente</option><option>Después</option></select></td></tr></template><button type="button" class="addrow" data-add>+ Iniciativa</button></div>
+<div class="sub" style="margin-top:.4rem">«Ahora» solo hasta llenar la capacidad libre de la zona; lo demás es «Siguiente» o «Después».<br><b>Zona:</b> R Rendimiento · P Productividad · I Incubación · T Transformación. Cada zona compite solo dentro de su propia capacidad. El costo de demora va de 1 (poco) a 5 (mucho).</div></div>
+<div class="cap4"><div><h3><b>4</b>Capacidad por zona</h3><div class="sub">Asignada: la meta de capacidad del mapa convertida en equipos. Comprometida y libre, también en equipos. Es la base del «sí condicionado».</div></div><div class="cb"><div class="t">Rendimiento</div><div class="r">Asignada<input class="f num" type="number" min="0" step="0.5" name="cap_R_a"></div><div class="r">Comprometida<input class="f num" type="number" min="0" step="0.5" name="cap_R_c"></div><div class="r">Libre<span class="libre" data-libre="R">–</span></div></div><div class="cb"><div class="t">Productividad</div><div class="r">Asignada<input class="f num" type="number" min="0" step="0.5" name="cap_P_a"></div><div class="r">Comprometida<input class="f num" type="number" min="0" step="0.5" name="cap_P_c"></div><div class="r">Libre<span class="libre" data-libre="P">–</span></div></div><div class="cb"><div class="t">Incubación</div><div class="r">Asignada<input class="f num" type="number" min="0" step="0.5" name="cap_I_a"></div><div class="r">Comprometida<input class="f num" type="number" min="0" step="0.5" name="cap_I_c"></div><div class="r">Libre<span class="libre" data-libre="I">–</span></div></div><div class="cb"><div class="t">Transformación</div><div class="r">Asignada<input class="f num" type="number" min="0" step="0.5" name="cap_T_a"></div><div class="r">Comprometida<input class="f num" type="number" min="0" step="0.5" name="cap_T_c"></div><div class="r">Libre<span class="libre" data-libre="T">–</span></div></div></div>
+</div>
+<div class="foot"><div><b>Kiowa · Gestión de portafolio de productos</b><br>Estrategia, priorización y gobierno del portafolio</div>
+<div class="use"><b>Cómo usarlo ·</b> acuerden criterios y pesos, calibren la escala con tres iniciativas conocidas y luego califiquen y ordenen por zona. Toda iniciativa nueva pasa por el «sí condicionado».<small>© Kiowa · v7.0 · Costo de demora y WSJF (D. Reinertsen; SAFe) · capacidad por zona según G. Moore, Zone to Win (2015)</small></div><img src="assets/logo.png" alt="Kiowa"></div>
+</main>
+<script>window.recalc=function(){
+var t=0,any=false;document.querySelectorAll('input[name^="crit_"][name$="_peso"]').forEach(function(i){var v=parseFloat(i.value);if(v>0){t+=v;any=true;}});
+document.getElementById('pesoTot').textContent=t+' %';
+var m=document.getElementById('pesoMsg');m.textContent=!any?'':(t===100?'✓ suma 100 %':'Debe sumar 100 %');m.className=t===100?'ok':'warn';
+document.querySelectorAll('[data-pt]').forEach(function(c){var i=c.getAttribute('data-pt');
+ var cd=parseFloat((document.querySelector('[name="ini_'+i+'_cd"]')||{}).value),tm=parseFloat((document.querySelector('[name="ini_'+i+'_tam"]')||{}).value);
+ c.textContent=(cd>0&&tm>0)?(Math.round(cd/tm*100)/100):'–';});
+['R','P','I','T'].forEach(function(z){var a=parseFloat((document.querySelector('[name="cap_'+z+'_a"]')||{}).value),c=parseFloat((document.querySelector('[name="cap_'+z+'_c"]')||{}).value);
+ var e=document.querySelector('[data-libre="'+z+'"]');
+ if(isNaN(a)&&isNaN(c)){e.textContent='–';e.className='libre';return;}
+ var l=(a||0)-(c||0);e.textContent=l;e.className='libre '+(l<0?'warn':'ok');});
+};</script>
+<script src="assets/app.js"></script>
+</body></html>

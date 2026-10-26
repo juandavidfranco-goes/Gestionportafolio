@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapa por zonas y horizontes · Toolkit Gestión de portafolio</title>
+<meta name="description" content="Toolkit interactivo de gestión de portafolio de productos: Mapa por zonas y horizontes.">
+<link rel="icon" href="assets/logo.png"><link rel="stylesheet" href="assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+</head><body data-page="2-mapa">
+<div class="toolbar"><div class="brand"><img src="assets/logo.png" alt="Kiowa"><a href="index.html" style="color:#fff;text-decoration:none">Toolkit · Gestión de portafolio</a></div>
+<span class="saved">Se guarda solo en este navegador</span>
+<button data-act="print">Imprimir / PDF</button><button data-act="export">Guardar archivo</button><button data-act="import">Abrir archivo</button><button data-act="clear">Limpiar hoja</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+<main class="sheet">
+<div class="crumbs"><a href="1a-despliegue.html">1a&nbsp; Despliegue</a><span class="sep"> › </span><a href="1b-inventario.html">1b&nbsp; Productos</a><span class="sep"> › </span><span class="on">2&nbsp; Mapa</span><span class="sep"> › </span><a href="3-priorizacion.html">3&nbsp; Priorización</a><span class="sep"> › </span><span class="off">4&nbsp; Gobierno</span></div>
+<div class="head"><div><h1>Mapa por zonas y horizontes</h1><p class="q">¿Qué enfoque estratégico necesita cada producto?</p></div><div><div class="meta"><label>Portafolio:<input name="m_portafolio" autocomplete="off"></label><label>Solución:<input name="m_solucion" autocomplete="off"></label><label>Fecha:<input name="m_fecha" autocomplete="off"></label><label>Versión:<input name="m_version" autocomplete="off"></label></div><div class="flow"><b>Recibe</b> de Inventario de productos: productos con problema, usuario, indicador y ciclo de vida<br><b>Entrega</b> a Priorización: zona, horizonte y meta de capacidad por zona</div></div></div>
+<style>
+.mp{display:grid;grid-template-columns:34px 1fr 1fr 400px;border:3px solid var(--navy)}
+.mp>div{border-right:1px solid var(--navy);border-bottom:1px solid var(--navy)}
+.mh{background:#F5F8FC;padding:.55rem .8rem;font-size:.85rem;text-align:center}.mh b{color:var(--navy)}
+.vl{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-weight:700;font-size:.75rem;color:var(--navy);padding:.6rem 0;letter-spacing:.04em;background:#fff}
+.z{padding:.8rem .9rem;display:flex;flex-direction:column;gap:.35rem;min-height:330px}
+.z h3{margin:0;font-size:1.2rem;color:var(--navy)}
+.z .qq{color:var(--blue);font-style:italic;font-size:.9rem}
+.z .meas{margin-top:auto;font-size:.8rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}.z .meas b{color:var(--blue)}
+.zi{display:grid;grid-template-columns:1fr 70px 78px;gap:.3rem;align-items:center;margin-bottom:.2rem}
+.zi .f{border:1px solid var(--line);border-radius:4px}
+.zi select{border:1px solid var(--line);border-radius:4px;padding:.25rem;background:#fff;font-size:.85rem}
+.zh{display:grid;grid-template-columns:1fr 70px 78px;gap:.3rem;font-size:.7rem;color:var(--grey)}
+.zT{border-top:5px solid var(--zT)}.zR{border-top:5px solid var(--zR)}.zI{border-top:5px solid var(--zI)}.zP{border-top:5px solid var(--zP)}
+.hz{padding:.6rem .9rem;display:grid;grid-template-columns:60px 1fr;gap:.2rem .6rem;align-items:start}
+.hz .H{font-size:1.5rem;font-weight:900;color:var(--navy)}
+.side{padding:.8rem .9rem}
+.side h3{margin:0 0 .2rem;color:var(--navy);font-size:1.1rem}
+.rules{margin:0;padding-left:1.1rem;font-size:.83rem;color:var(--grey)}
+.cap{grid-column:1 / span 3;padding:.8rem .9rem}
+.caps{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:.5rem}
+.capb{border:1px solid var(--line);padding:.5rem .6rem}
+.capb .t{font-weight:700;color:var(--navy);font-size:.88rem;display:flex;justify-content:space-between}
+.capb .t small{font-weight:400;color:var(--grey)}
+.capb .r{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.3rem;font-size:.8rem}
+.out{font-size:1.4rem;font-weight:900;color:var(--blue)}
+.tot{font-size:.8rem;margin-top:.4rem}
+@media (max-width:1100px){.mp{grid-template-columns:1fr}.vl{writing-mode:horizontal-tb;transform:none}.cap{grid-column:1}.caps{grid-template-columns:1fr 1fr}}
+</style><div class="mp">
+<div class="mh" style="text-align:left;font-weight:700;color:var(--blue);font-size:.7rem;writing-mode:vertical-rl;transform:rotate(180deg)">ZONAS</div>
+<div class="mh"><b>INNOVACIÓN DISRUPTIVA</b> · modelo nuevo</div><div class="mh"><b>INNOVACIÓN SOSTENIDA</b> · modelo actual</div><div class="mh"><b>HORIZONTES DE IMPACTO</b></div>
+<div class="vl">ENTREGA DE RESULTADOS MATERIALES</div>
+<div class="z zT"><h3>Transformación · transformar</h3><div class="sub">Un nuevo modelo de negocio o de servicio que se lleva a escala hasta volverse material para la organización.</div><div class="qq">¿Es el nuevo modelo que el espacio de Solución decidió llevar a escala?</div><div data-repeat="zT" data-min="3"><div class="zh"><span>Producto (un color por programa en el pósit)</span><span>Horizonte</span><span>Capacidad</span></div><div data-rows></div><template><div class="zi"><input class="f" name="zT___i___n" placeholder="Producto"><select name="zT___i___h"><option value="">Horizonte</option><option>H1</option><option>H2</option><option>H3</option></select><input class="f num" type="number" min="0" step="0.5" name="zT___i___c" placeholder="Equipos"></div></template><button type="button" class="addrow" data-add>+ Producto</button></div><div class="meas"><span><b>Se mide con:</b> adopción y cobertura frente a la meta de escala.</span><span class="chip">H2</span></div></div><div class="z zR"><h3>Rendimiento · sostener</h3><div class="sub">Productos que hoy entregan resultados materiales a sus usuarios y a la organización. Se sostienen y mejoran de forma incremental.</div><div class="qq">¿Hoy entrega resultados materiales a sus usuarios?</div><div data-repeat="zR" data-min="3"><div class="zh"><span>Producto (un color por programa en el pósit)</span><span>Horizonte</span><span>Capacidad</span></div><div data-rows></div><template><div class="zi"><input class="f" name="zR___i___n" placeholder="Producto"><select name="zR___i___h"><option value="">Horizonte</option><option>H1</option><option>H2</option><option>H3</option></select><input class="f num" type="number" min="0" step="0.5" name="zR___i___c" placeholder="Equipos"></div></template><button type="button" class="addrow" data-add>+ Producto</button></div><div class="meas"><span><b>Se mide con:</b> avance del indicador clave, cobertura y calidad.</span><span class="chip">H1</span></div></div>
+<div class="side" style="padding:0">
+ <div class="hz"><div class="H">H1</div><div>Resultados del año en curso.<br><b style="font-size:.8rem">Hoy · 0 – 12 meses</b><div class="sub"><b style="color:var(--blue)">Zona típica:</b> Rendimiento y Productividad</div></div>
+ <div class="H" style="color:#2F5E9E">H2</div><div>Lo que debe volverse material en uno a tres años.<br><b style="font-size:.8rem">Próximo · 12 – 36 meses</b><div class="sub"><b style="color:var(--blue)">Zona típica:</b> Transformación</div></div>
+ <div class="H" style="color:#5F8FC9">H3</div><div>Opciones de impacto a un plazo de tres a seis años.<br><b style="font-size:.8rem">Futuro · 36 – 72 meses</b><div class="sub"><b style="color:var(--blue)">Zona típica:</b> Incubación</div></div></div></div>
+<div class="vl">CAPACIDAD HABILITADORA</div>
+<div class="z zI"><h3>Incubación · explorar</h3><div class="sub">Opciones de futuro que se prueban con capacidad acotada y aprendizaje rápido.</div><div class="qq">¿Es una opción de futuro que todavía hay que probar?</div><div data-repeat="zI" data-min="3"><div class="zh"><span>Producto (un color por programa en el pósit)</span><span>Horizonte</span><span>Capacidad</span></div><div data-rows></div><template><div class="zi"><input class="f" name="zI___i___n" placeholder="Producto"><select name="zI___i___h"><option value="">Horizonte</option><option>H1</option><option>H2</option><option>H3</option></select><input class="f num" type="number" min="0" step="0.5" name="zI___i___c" placeholder="Equipos"></div></template><button type="button" class="addrow" data-add>+ Producto</button></div><div class="meas"><span><b>Se mide con:</b> aprendizaje validado e hitos de evidencia.</span><span class="chip">H3</span></div></div><div class="z zP"><h3>Productividad · optimizar</h3><div class="sub">Sistemas, datos y procesos que hacen más eficiente, segura y conforme a la norma la operación de Rendimiento.</div><div class="qq">¿Hace más eficiente o segura la operación de Rendimiento?</div><div data-repeat="zP" data-min="3"><div class="zh"><span>Producto (un color por programa en el pósit)</span><span>Horizonte</span><span>Capacidad</span></div><div data-rows></div><template><div class="zi"><input class="f" name="zP___i___n" placeholder="Producto"><select name="zP___i___h"><option value="">Horizonte</option><option>H1</option><option>H2</option><option>H3</option></select><input class="f num" type="number" min="0" step="0.5" name="zP___i___c" placeholder="Equipos"></div></template><button type="button" class="addrow" data-add>+ Producto</button></div><div class="meas"><span><b>Se mide con:</b> eficiencia, tiempo, esfuerzo y cumplimiento.</span><span class="chip">H1</span></div></div>
+<div class="side"><h3>Movimientos previstos</h3><div class="sub">Qué producto cambia de zona o sale del portafolio, cuándo y con qué evidencia. Incluya lo que se deja de hacer: es el costo de oportunidad.</div><textarea class="f" name="movimientos" placeholder="" rows="6"></textarea></div>
+<div class="cap"><h3 style="margin:0;color:var(--navy)">Capacidad por zona: hoy y meta</h3><div class="sub">Hoy: anote en cada producto su capacidad (en equipos); se suma por zona y se muestra en % del total. Meta: la decide el espacio de Solución. Los «Hoy» suman 100 %; los «Meta», también.</div>
+<div class="caps"><div class="capb"><div class="t"><span>Rendimiento</span><small></small></div><div class="r"><div>Hoy<div class="out" data-hoy="R">0 %</div></div><div>Meta<div style="display:flex;align-items:center;gap:.2rem"><input class="f num" type="number" min="0" max="100" name="meta_R" placeholder="0"> %</div></div></div></div><div class="capb"><div class="t"><span>Productividad</span><small></small></div><div class="r"><div>Hoy<div class="out" data-hoy="P">0 %</div></div><div>Meta<div style="display:flex;align-items:center;gap:.2rem"><input class="f num" type="number" min="0" max="100" name="meta_P" placeholder="0"> %</div></div></div></div><div class="capb"><div class="t"><span>Incubación</span><small></small></div><div class="r"><div>Hoy<div class="out" data-hoy="I">0 %</div></div><div>Meta<div style="display:flex;align-items:center;gap:.2rem"><input class="f num" type="number" min="0" max="100" name="meta_I" placeholder="0"> %</div></div></div></div><div class="capb"><div class="t"><span>Transformación</span><small>0 % si no hay una activa</small></div><div class="r"><div>Hoy<div class="out" data-hoy="T">0 %</div></div><div>Meta<div style="display:flex;align-items:center;gap:.2rem"><input class="f num" type="number" min="0" max="100" name="meta_T" placeholder="0"> %</div></div></div></div></div><div class="tot" id="tots"></div></div>
+<div class="side"><h3>Reglas del portafolio</h3><ul class="rules"><li>Una sola transformación a la vez, decidida en el espacio de Solución y liderada por la alta dirección.</li><li>Cada producto se gestiona desde una sola zona.</li><li>Cada zona se mide con sus propios indicadores.</li><li>La incubación avanza por hitos y su capacidad está protegida: no cubre urgencias de otras zonas.</li><li>Un producto cambia de zona solo por decisión del espacio de Solución.</li></ul></div>
+</div>
+<div class="foot"><div><b>Kiowa · Gestión de portafolio de productos</b><br>Estrategia, priorización y gobierno del portafolio</div>
+<div class="use"><b>Cómo usarlo ·</b> ubique cada producto una sola vez, en la zona desde la que se gestionará y medirá. Anote su horizonte (H1, H2 o H3) y su capacidad en equipos. Un color por programa si usa pósits.<small>© Kiowa · v7.0 · Zonas según G. Moore, Zone to Win (2015) · horizontes: Baghai, Coley y White, The Alchemy of Growth (1999)</small></div><img src="assets/logo.png" alt="Kiowa"></div>
+</main>
+<script>window.recalc=function(){
+var Z=['R','P','I','T'],sum={R:0,P:0,I:0,T:0},tot=0;
+Z.forEach(function(z){document.querySelectorAll('input[name^="z'+z+'_"][name$="_c"]').forEach(function(i){var v=parseFloat(i.value);if(v>0){sum[z]+=v;tot+=v;}});});
+Z.forEach(function(z){var e=document.querySelector('[data-hoy="'+z+'"]');e.textContent=(tot?Math.round(sum[z]/tot*100):0)+' %';});
+var m=0;Z.forEach(function(z){var v=parseFloat((document.querySelector('[name="meta_'+z+'"]')||{}).value);if(v>0)m+=v;});
+var hoyTot=tot?Z.reduce(function(a,z){return a+Math.round(sum[z]/tot*100)},0):0;
+document.getElementById('tots').innerHTML='Hoy: <b class="'+(hoyTot===100||!tot?'ok':'warn')+'">'+hoyTot+' %</b> · capacidad total '+tot+' equipos &nbsp;|&nbsp; Meta: <b class="'+(m===100?'ok':(m?'warn':''))+'">'+m+' %</b>'+(m&&m!==100?' (debe sumar 100 %)':'');
+};</script>
+<script src="assets/app.js"></script>
+</body></html>
